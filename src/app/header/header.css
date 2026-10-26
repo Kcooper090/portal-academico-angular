@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: #1e3a5f;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header__conteudo {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Logo */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.header__logo-icone {
+  font-size: 1.5rem;
+}
+
+.header__logo strong {
+  color: #ffff;
+}
+
+/* Navegação */
+.header__nav ul {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #e0e7ff;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.header__nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.header__nav a.ativo {
+  background: #ffff;
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+/* Botão hambúrguer (escondido no desktop) */
+.header__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.header__toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+
+
+@media (max-width: 720px) {
+  .header__toggle {
+    display: flex;
+  }
+
+  .header__nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #1e3a8a;
+    padding: 0.5rem 1.25rem 1rem;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .header__nav--aberto {
+    display: block;
+  }
+
+  .header__nav ul {
+    flex-direction: column;
+  }
+}

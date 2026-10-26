@@ -1,0 +1,54 @@
+
+<header class="header">
+  <div class="header__conteudo">
+    <a class="header__logo" routerLink="/" (click)="fecharMenu()">
+      <span class="header__logo-icone" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="currentColor">
+ 
+  <polygon points="32,12 60,25 32,38 4,25" />
+  
+  
+  <path d="M16,33.5 V44 C16,49 48,49 48,44 V33.5 C43,36.5 37.5,38 32,38 C26.5,38 21,36.5 16,33.5 Z" />
+  
+
+  <path d="M32,25 L12,33.5 V48 H10 V32.5 Z" />
+</svg>
+</span>
+      <span class="header__logo-texto">Portal <strong>Acadêmico</strong></span>
+    </a>
+
+    <button
+      class="header__toggle"
+      type="button"
+      aria-label="Abrir menu"
+      [attr.aria-expanded]="menuAberto()"
+      aria-controls="menu-principal"
+      (click)="alternarMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="menu-principal"
+      class="header__nav"
+      [class.header__nav--aberto]="menuAberto()"
+      aria-label="Navegação principal"
+    >
+      <ul>
+        @for (link of links; track link.rota) {
+          <li>
+            <a
+              [routerLink]="link.rota"
+              routerLinkActive="ativo"
+              [routerLinkActiveOptions]="{ exact: !!link.exato }"
+              (click)="fecharMenu()"
+            >
+              {{ link.rotulo }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

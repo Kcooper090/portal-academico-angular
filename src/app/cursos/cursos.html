@@ -1,0 +1,29 @@
+<main class="container">
+  <section class="cards">
+    @for (card of cursos; track card.id) {
+      <article class="card">
+        <img class="card__imagem" [src]="card.imagem" [alt]="card.titulo" />
+        <div class="card__corpo">
+          <h2 class="card__titulo">{{ card.titulo }}</h2>
+          <p class="card__texto">{{ card.descricao }}</p>
+          <button type="button" class="btn" (click)="verDetalhes(card)">
+            Ver detalhes
+          </button>
+        </div>
+      </article>
+    }
+  </section>
+</main>
+
+@if (selecionado(); as card) {
+  <div class="overlay" (click)="fechar()">
+    <div class="modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <img class="modal__imagem" [src]="card.imagem" [alt]="card.titulo" />
+      <div class="modal__corpo">
+        <h2>{{ card.titulo }}</h2>
+        <p>{{ card.detalhes }}</p>
+        <button type="button" class="btn" (click)="fechar()">Fechar</button>
+      </div>
+    </div>
+  </div>
+}

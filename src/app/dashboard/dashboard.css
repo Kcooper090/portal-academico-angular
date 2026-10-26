@@ -1,0 +1,91 @@
+.dashboard {
+    padding: 30px;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    font-family: arial,sans-serif;
+}
+
+.dashboard h1{
+    font-size: 28px;
+    color: #1e3a5f;
+    margin-bottom: 10px;
+}
+
+.dashboard > p {
+    color: #666;
+    font-size: 16px;
+}
+
+.indicadores {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 36px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #777;
+}
+
+.conteudo {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.conteudo p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .indicadores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        padding: 15px;
+    }
+
+    .indicadores {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard h1 {
+        font-size: 24px;
+    }
+
+    .card h2 {
+        font-size: 30px;
+    }
+}
