@@ -1,9 +1,50 @@
 <section class="notas">
-  <h1>Notas</h1>
+  <!-- Cabeçalho com filtros -->
+  <header class="filtros">
+    <h1>Relatórios:</h1>
+
+    <select aria-label="Ano" (change)="mudarAno($any($event.target).value)">
+      @for (a of anos; track a) {
+        <option [value]="a" [selected]="a === anoSelecionado()">{{ a }}</option>
+      }
+    </select>
+
+    <label for="tipo" class="filtros__label">Tipos de relatórios:</label>
+    <select id="tipo" class="select-tipo" (change)="mudarTipo($any($event.target).value)">
+      @for (t of tipos; track t) {
+        <option [value]="t">{{ t }}</option>
+      }
+    </select>
+  </header>
+
+  <!-- Lista de relatórios -->
+  <div class="lista">
+    @for (r of relatoriosFiltrados(); track r.codigo) {
+      <div class="item">
+        <div class="item__info">
+          <a class="item__titulo">{{ r.codigo }} - {{ r.titulo }}</a>
+          <p><strong>Tipo de relatório:</strong> {{ r.tipo }}</p>
+        </div>
+        <button type="button" class="emitir" (click)="emitir(r)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6 2h8l6 6v14H6V2zm7 1.5V9h5.5L13 3.5zM8 12h8v1.5H8V12zm0 3h8v1.5H8V15zm0 3h5v1.5H8V18z" />
+          </svg>
+          Emitir relatório
+        </button>
+      </div>
+    }
+  </div>
+
+  @if (aviso()) {
+    <p class="aviso">{{ aviso() }}</p>
+  }
+
+  <!-- Lançamento de notas -->
+  <h2>Lançar notas ({{ anoSelecionado() }})</h2>
 
   <form class="notas__form" [formGroup]="form" (ngSubmit)="salvar()" novalidate>
     <div class="campo">
-      <label for="nome">Nome</label>
+      <label for="nome">Nome do aluno</label>
       <input id="nome" type="text" formControlName="nome" placeholder="Nome do aluno" />
       @if (invalido('nome')) {
         <small class="erro">Informe o nome (mínimo 2 caracteres).</small>
@@ -39,10 +80,10 @@
       <strong>{{ mediaAtual !== null ? formatar(mediaAtual) : '—' }}</strong>
     </div>
 
-    <button type="submit">Salvar</button>
+    <button type="submit" class="salvar">Salvar</button>
   </form>
 
-  @if (registros().length > 0) {
+  @if (registrosDoAno().length > 0) {
     <div class="tabela-wrapper">
       <table>
         <thead>
@@ -56,7 +97,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (r of registros(); track $index) {
+          @for (r of registrosDoAno(); track r.id) {
             <tr>
               <td>{{ r.nome }}</td>
               <td>{{ r.disciplina }}</td>
@@ -64,7 +105,7 @@
               <td>{{ formatar(r.nota2) }}</td>
               <td class="td-media">{{ formatar(r.media) }}</td>
               <td>
-                <button type="button" class="remover" (click)="remover($index)" aria-label="Remover">✕</button>
+                <button type="button" class="remover" (click)="remover(r.id)" aria-label="Remover">✕</button>
               </td>
             </tr>
           }
@@ -72,6 +113,6 @@
       </table>
     </div>
   } @else {
-    <p class="vazio">Nenhuma nota lançada ainda.</p>
+    <p class="vazio">Nenhuma nota lançada em {{ anoSelecionado() }}.</p>
   }
 </section>
