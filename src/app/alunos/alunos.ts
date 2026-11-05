@@ -14,7 +14,7 @@ interface Aluno {
   templateUrl: './alunos.html',
 })
 export class Alunos {
-  cursos = ['Engenharia de Software', 'Ciência da Computação', 'Sistemas de Informação', 'Direito', 'Administração'];
+  cursos = ['Informática Básica', 'Programação', 'Inglês', 'Educação Financeira'];
 
   // Lista de alunos cadastrados
   alunos: Aluno[] = [];

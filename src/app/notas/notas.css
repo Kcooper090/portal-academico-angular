@@ -1,7 +1,7 @@
 :host {
-  --teal: #17819a;
-  --teal-escuro: #11677c;
-  --texto: #4b5563;
+  --teal: #1e3a5f;
+  --teal-escuro: #1e3a5f;
+  --texto: black;
 }
 
 .notas {
